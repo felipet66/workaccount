@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin|Russo+One&display=swap');
+
+$f_1: 'Russo One',
+sans-serif;
+$f_2: 'Cabin',
+sans-serif;
+
+.f-primary {
+  font-family: $f_1;
+  color: gold;
+}
+
+.f-secondary {
+  font-family: $f_2;
+}
+
+.border-dot {
+  height: 30%;
+  border: 1px dotted white;
+}
+
+.flex {
+  display: flex;
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.items-center {
+    align-items: center;
+  }
+}
+
+.error-message {
+  color: red !important;
+}
