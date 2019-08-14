@@ -1,60 +1,53 @@
-import { Component, OnInit, OnChanges } from "@angular/core";
-
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { Salary } from "../shared/salary.model";
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"]
 })
-export class HomeComponent implements OnInit, OnChanges {
-  private cltValue: any;
-  private pjValue: any;
-  private cltValues = [
+export class HomeComponent implements OnInit {
+  private result = [
     {
-      INSS: [{}],
-      PJ: [{}]
+      INSS: {
+        valorBruto: "100,00",
+        valorLiquido: "100.00",
+        ferias13: 10,
+        fgts: 1231,
+        inss: 12321,
+        irrf: 1002,
+        pis: 1231,
+        custoMensalContratante: 9000
+      },
+      PJ: {
+        valorBruto: "100,00",
+        valorLiquido: "100.00",
+        ferias13: 0,
+        fgts: 0,
+        inss: 12321,
+        irrf: 0,
+        pis: 0,
+        custoMensalContratante: 11000
+      }
     }
   ];
   public errorMessages = false;
+  public formSalary: FormGroup;
 
-  public calculateForm = new FormGroup({
-    value: new FormControl("")
-  });
+  constructor(private formBuilder: FormBuilder) {}
 
-  constructor() {}
-
-  ngOnInit() {}
-
-  ngOnChanges(): void {
-    this.isInputValid();
+  ngOnInit() {
+    this.createForm(new Salary());
   }
 
-  isInputValid() {
-    if (this.calculateForm.value !== "") {
-      this.errorMessages = true;
-    }
+  createForm(salary: Salary) {
+    this.formSalary = this.formBuilder.group({
+      salary: new FormControl(salary.salary)
+    });
   }
 
-  calculateIncomeCLT(value: any): any {
-    let $value = value;
-    console.log("CLICK" + value);
-    if ($value >= 1903.98 && $value <= 2826.65) {
-      // 7.5%
-      $value /= 1.075;
-      console.log("Üno" + $value);
-    } else if ($value >= 2826.66 && $value <= 3751.05) {
-      // 15%
-      $value /= 1.15;
-      console.log("doub" + $value);
-    } else if ($value >= 3751.06 && $value <= 4664.68) {
-      // 22,5%
-      $value /= 1.225;
-      console.log("three" + $value);
-    } else if ($value >= 4664.69) {
-      // 27,5 %
-      $value /= 1.275;
-      console.log("four" + $value);
-    }
+  onSubmit() {
+    console.info(this.formSalary.value.salary);
   }
 }

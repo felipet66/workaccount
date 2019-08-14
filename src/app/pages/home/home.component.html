@@ -3,16 +3,17 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="text-center f-primary border-dot mt-3 flex justify-center items-center">Simulador</h1>
-        <form [formGroup]="calculateForm">
+        <form [formGroup]="formSalary" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="valor" class="f-primary">Renda Mensal Bruto</label>
-            <input type="number" class="form-control" formControlName="value">
+            <label for="salary" class="f-primary">Renda Mensal Bruto</label>
+            <input type="text" class="form-control" formControlName="salary" name="salary">
+
+            {{ formSalary.value.salary | currency:'BRL':true }}
             <h4 style="color: rgb(151, 14, 14)" *ngIf="errorMessages">Valor deve ser maior que zero! (:</h4>
           </div>
+          <button type="submit" class="btn btn-warning w-100 text-white f-primary">Carregar
+          </button>
         </form>
-        <button type="button" class="btn btn-warning w-100 text-white f-primary"
-          (click)="calculateIncomeCLT(1)">Carregar
-        </button>
       </div>
     </div>
     <div class="row mt-5">

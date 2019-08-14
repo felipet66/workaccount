@@ -7,10 +7,17 @@ import { HomeComponent } from "./pages/home/home.component";
 
 import { ReactiveFormsModule } from "@angular/forms";
 
+import { LOCALE_ID } from "@angular/core";
+
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: "en-US"
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
