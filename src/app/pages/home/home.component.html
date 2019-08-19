@@ -6,7 +6,7 @@
         <form [formGroup]="formSalary" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="salary" class="f-primary">Renda Mensal Bruto</label>
-            <input type="text" class="form-control" formControlName="salary" name="salary">
+            <input type="text" class="form-control" formControlName="salary" name="salary" id="salary">
 
             {{ formSalary.value.salary | currency:'BRL':true }}
             <h4 style="color: rgb(151, 14, 14)" *ngIf="errorMessages">Valor deve ser maior que zero! (:</h4>
