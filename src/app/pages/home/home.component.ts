@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   public errorMessages = false;
   public formSalary: FormGroup;
   public salaryResponse = [];
+  public loader = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,12 +31,16 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.salaryService
-      .sendSalaryTottality(this.formSalary.value.salary)
-      .subscribe(res => {
-        this.salaryResponse.push(res);
-        console.log(this.salaryResponse);
-      });
+    this.loader = true;
+    setTimeout(() => {
+      this.salaryService
+        .sendSalaryTottality(this.formSalary.value.salary)
+        .subscribe(res => {
+          this.loader = false;
+          this.salaryResponse.push(res);
+          console.log(this.salaryResponse);
+        });
+    }, 2000);
     console.info(this.formSalary.value.salary);
   }
 }
