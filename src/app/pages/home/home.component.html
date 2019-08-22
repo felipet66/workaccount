@@ -25,29 +25,9 @@
     <div class="row mt-5" *ngIf="salaryResponse">
       <div class="col-md-3"></div>
       <div class="col-md-8">
-        <h2 class="f-primary">CLT</h2>
-        <table class="table table-borderless table-sm text-white">
-          <tbody>
-            <tr>
-              <td>Salario Bruto</td>
-              <th>
-                {{ salaryResponse.salary | currency: "BRL":true:"1.2-2" }}
-              </th>
-            </tr>
-            <tr *ngFor="let tributes of salaryResponse.tributes">
-              <td>{{ tributes.name }}</td>
-              <th>{{ tributes.value | currency: "BRL":true:"1.2-2" }}</th>
-            </tr>
-            <tr>
-              <td>Salario Liquido</td>
-              <th>
-                {{
-                  salaryResponse.liquidSalary | currency: "BRL":true:"1.2-2"
-                }}
-              </th>
-            </tr>
-          </tbody>
-        </table>
+        <app-hiring-scheme-table hiring-scheme="CLT" [salary]="salaryResponse.salary"
+          [liquidSalary]="salaryResponse.liquidSalary" [tributes]="salaryResponse.tributes">
+        </app-hiring-scheme-table>
       </div>
     </div>
   </div>

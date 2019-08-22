@@ -1,1 +1,23 @@
-<p>hiring-scheme-table works!</p>
+<h2 class="f-primary">CLT</h2>
+<table class="table table-borderless table-sm text-white">
+  <tbody>
+    <tr>
+      <td>Salario Bruto</td>
+      <th>
+        {{ salary | currency: "BRL":true:"1.2-2" }}
+      </th>
+    </tr>
+    <tr *ngFor="let tributes of tributes">
+      <td>{{ tributes.name }}</td>
+      <th>{{ tributes.value | currency: "BRL":true:"1.2-2" }}</th>
+    </tr>
+    <tr>
+      <td>Salario Liquido</td>
+      <th>
+        {{
+            liquidSalary | currency: "BRL":true:"1.2-2"
+        }}
+      </th>
+    </tr>
+  </tbody>
+</table>
