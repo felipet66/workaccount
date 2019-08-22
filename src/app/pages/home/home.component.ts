@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 import { Salary } from "../shared/salary.model";
 import { SalaryService } from "../shared/salary.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-home",
@@ -35,12 +37,26 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.salaryService
         .sendSalaryTottality(this.formSalary.value.salary)
-        .subscribe(res => {
-          this.loader = false;
-          this.salaryResponse.push(res);
-          console.log(this.salaryResponse);
-        });
-    }, 2000);
-    console.info(this.formSalary.value.salary);
+        .subscribe(
+          (res: Salary[]) => {
+            this.loader = false;
+            this.salaryResponse.push(res);
+          },
+          (error: HttpErrorResponse) => {
+            this.handleError();
+          }
+        );
+    }, 1500);
+  }
+
+  handleError(): void {
+    this.loader = false;
+    Swal.fire({
+      type: "error",
+      title: "Oops...",
+      text: "Algo deu errado, por favor tente novamente mais tarde! :(",
+      confirmButtonColor: "darkgreen"
+    });
+    return;
   }
 }

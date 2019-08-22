@@ -10,13 +10,16 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { LOCALE_ID } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module
   ],
   providers: [
     {
