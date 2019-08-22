@@ -11,9 +11,10 @@ import { LOCALE_ID } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { LoaderComponent } from "./pages/shared/components/loader/loader.component";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

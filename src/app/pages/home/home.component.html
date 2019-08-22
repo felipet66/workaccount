@@ -2,41 +2,25 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1
-          class="text-center f-primary border-dot mt-3 flex justify-center items-center"
-        >
+        <h1 class="text-center f-primary border-dot mt-3 flex justify-center items-center">
           Simulador
         </h1>
         <form [formGroup]="formSalary" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="salary" class="f-primary">Renda Mensal Bruto</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="salary"
-              name="salary"
-              id="salary"
-            />
+            <input type="text" class="form-control" formControlName="salary" name="salary" id="salary" />
             <h4 style="color: rgb(151, 14, 14)" *ngIf="errorMessages">
               Valor deve ser maior que zero! (:
             </h4>
           </div>
-          <button
-            type="submit"
-            class="btn btn-warning w-100 text-white f-primary"
-          >
+          <button type="submit" class="btn btn-warning w-100 text-white f-primary">
             Carregar
           </button>
         </form>
       </div>
     </div>
-    <div class="loader" *ngIf="loader">
-      <div class="lds-ellipsis mt-5 mb-5">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+    <div class="loader">
+      <app-loader [active]="loader"></app-loader>
     </div>
     <div class="row mt-5" *ngIf="salaryResponse.length > 0">
       <div class="col-md-6">
@@ -68,10 +52,7 @@
         <h3 *ngIf="salaryResponse.length > 1" style="color: white;">
           Ultimas Consultas
         </h3>
-        <table
-          class="table table-borderless table-sm text-white"
-          *ngFor="let sal of salaryResponse"
-        >
+        <table class="table table-borderless table-sm text-white" *ngFor="let sal of salaryResponse">
           <tbody>
             <tr>
               <td>Bruto</td>
