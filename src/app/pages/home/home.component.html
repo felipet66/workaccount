@@ -22,18 +22,19 @@
     <div class="loader">
       <app-loader [active]="loader"></app-loader>
     </div>
-    <div class="row mt-5" *ngIf="salaryResponse.length > 0">
-      <div class="col-md-6">
+    <div class="row mt-5" *ngIf="salaryResponse">
+      <div class="col-md-3"></div>
+      <div class="col-md-8">
         <h2 class="f-primary">CLT</h2>
         <table class="table table-borderless table-sm text-white">
           <tbody>
             <tr>
               <td>Salario Bruto</td>
               <th>
-                {{ salaryResponse[0].salary | currency: "BRL":true:"1.2-2" }}
+                {{ salaryResponse.salary | currency: "BRL":true:"1.2-2" }}
               </th>
             </tr>
-            <tr *ngFor="let tributes of salaryResponse[0].tributes">
+            <tr *ngFor="let tributes of salaryResponse.tributes">
               <td>{{ tributes.name }}</td>
               <th>{{ tributes.value | currency: "BRL":true:"1.2-2" }}</th>
             </tr>
@@ -41,30 +42,9 @@
               <td>Salario Liquido</td>
               <th>
                 {{
-                  salaryResponse[0].liquidSalary | currency: "BRL":true:"1.2-2"
+                  salaryResponse.liquidSalary | currency: "BRL":true:"1.2-2"
                 }}
               </th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-6" *ngIf="salaryResponse.length > 1">
-        <h3 *ngIf="salaryResponse.length > 1" style="color: white;">
-          Ultimas Consultas
-        </h3>
-        <table class="table table-borderless table-sm text-white" *ngFor="let sal of salaryResponse">
-          <tbody>
-            <tr>
-              <td>Bruto</td>
-              <th>{{ sal.salary | currency: "BRL":true:"1.2-2" }}</th>
-            </tr>
-            <tr>
-              <td>Liquido</td>
-              <th>{{ sal.liquidSalary | currency: "BRL":true:"1.2-2" }}</th>
-            </tr>
-            <tr *ngFor="let tributes of sal.tributes">
-              <td>{{ tributes.name }}</td>
-              <td>{{ tributes.value }}</td>
             </tr>
           </tbody>
         </table>

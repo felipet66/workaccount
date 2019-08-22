@@ -12,9 +12,10 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { LoaderComponent } from "./pages/shared/components/loader/loader.component";
+import { HiringSchemeTableComponent } from './pages/shared/components/loader/hiring-scheme-table/hiring-scheme-table.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoaderComponent],
+  declarations: [AppComponent, HomeComponent, LoaderComponent, HiringSchemeTableComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 export class HomeComponent implements OnInit {
   public errorMessages = false;
   public formSalary: FormGroup;
-  public salaryResponse = [];
+  public salaryResponse: Salary[];
   public loader = false;
 
   constructor(
@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit {
         .subscribe(
           (res: Salary[]) => {
             this.loader = false;
-            this.salaryResponse.push(res);
+            this.salaryResponse = res;
+            console.log(this.salaryResponse);
           },
           (error: HttpErrorResponse) => {
             this.handleError();
