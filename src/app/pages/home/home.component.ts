@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
-import { Salary } from "../shared/salary.model";
-import { SalaryService } from "../shared/salary.service";
+import { Salary } from "../shared/models/salary.model";
+import { SalaryService } from "../shared/services/salary.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import Swal from "sweetalert2";
 
@@ -57,6 +57,5 @@ export class HomeComponent implements OnInit {
       text: "Algo deu errado, por favor tente novamente mais tarde! :(",
       confirmButtonColor: "darkgreen"
     });
-    return;
   }
 }
