@@ -8,8 +8,8 @@
         <form [formGroup]="formSalary" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="salary" class="f-primary">Renda Mensal Bruto</label>
-            <input type="number" class="form-control" formControlName="salary" name="salary" id="salary" required
-              minlength="2" [(ngModel)]="salary" placeholder="R$998,00" />
+            <input type="number" class="form-control" formControlName="salary" name="salary" id="salary" minlength="2"
+              [(ngModel)]="salary" placeholder="R$998,00" />
             <div class="alert alert-danger mt-2" *ngIf="salary < 998">
               Valor deve ser maior que o salário mínimo! :(
             </div>

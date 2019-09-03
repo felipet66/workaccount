@@ -1,4 +1,4 @@
-import { Tributes } from "./tributes.model";
+import { Tributes } from './tributes.model';
 
 export class Salary {
   public salary: string;

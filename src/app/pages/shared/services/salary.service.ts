@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Salary } from "../models/salary.model";
-import { Injectable } from "@angular/core";
-import { URL_API } from "../config/api";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Salary } from '../models/salary.model';
+import { Injectable } from '@angular/core';
+import { URL_API } from '../config/api';
 
 @Injectable()
 export class SalaryService {
