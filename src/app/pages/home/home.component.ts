@@ -4,6 +4,7 @@ import { Salary } from '../shared/models/salary.model';
 import { SalaryService } from '../shared/services/salary.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { LoggerService } from '../shared/services/logger.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private salaryService: SalaryService
+    private salaryService: SalaryService,
+    private loggerService: LoggerService
   ) {}
 
   ngOnInit() {
@@ -44,14 +46,15 @@ export class HomeComponent implements OnInit {
             this.salaryResponse = res;
           },
           (error: HttpErrorResponse) => {
-            this.handleError();
+            this.handleError(error);
           }
         );
     }, 1500);
   }
 
-  handleError(): void {
+  handleError(error: HttpErrorResponse): void {
     this.loader = false;
+    this.loggerService.showErros(error);
     Swal.fire({
       type: 'error',
       title: 'Oops...',
