@@ -1,4 +1,4 @@
-export class Tributes {
-  public inss: string;
-  public irrf: string;
+export interface Tributes {
+  inss: string;
+  irrf: string;
 }
