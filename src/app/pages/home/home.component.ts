@@ -13,7 +13,6 @@ import { LoggerService } from '../shared/services/logger.service';
   providers: [SalaryService]
 })
 export class HomeComponent implements OnInit {
-  public errorMessages = false;
   public formSalary: FormGroup;
   public salaryResponse: Salary[];
   public loader = false;
@@ -36,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loader = true;
+    this.loader = !this.loader;
     setTimeout(() => {
       this.salaryService
         .sendSalaryTottality(this.formSalary.value.salary)
@@ -53,7 +52,7 @@ export class HomeComponent implements OnInit {
   }
 
   handleError(error: HttpErrorResponse): void {
-    this.loader = false;
+    this.loader = !this.loader;
     this.loggerService.showErros(error);
     Swal.fire({
       type: 'error',
