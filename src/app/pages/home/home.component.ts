@@ -5,6 +5,7 @@ import { SalaryService } from '../shared/services/salary.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoggerService } from '../shared/services/logger.service';
+import { throttle } from '../shared/helpers/decorators/throttle';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loader = !this.loader;
+    this.loader = true;
     setTimeout(() => {
       this.salaryService
         .sendSalaryTottality(this.formSalary.value.salary)
