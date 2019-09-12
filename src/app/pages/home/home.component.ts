@@ -1,25 +1,28 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
-import { Salary } from "../shared/models/salary.model";
-import { SalaryService } from "../shared/services/salary.service";
-import { HttpErrorResponse } from "@angular/common/http";
-import Swal from "sweetalert2";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Salary } from '../shared/models/salary.model';
+import { SalaryService } from '../shared/services/salary.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { LoggerService } from '../shared/services/logger.service';
+import { throttle } from '../shared/helpers/decorators/throttle';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   providers: [SalaryService]
 })
 export class HomeComponent implements OnInit {
-  public errorMessages = false;
   public formSalary: FormGroup;
   public salaryResponse: Salary[];
   public loader = false;
+  public salary = 0;
 
   constructor(
     private formBuilder: FormBuilder,
-    private salaryService: SalaryService
+    private salaryService: SalaryService,
+    private loggerService: LoggerService
   ) {}
 
   ngOnInit() {
@@ -41,22 +44,22 @@ export class HomeComponent implements OnInit {
           (res: Salary[]) => {
             this.loader = false;
             this.salaryResponse = res;
-            console.log(this.salaryResponse);
           },
           (error: HttpErrorResponse) => {
-            this.handleError();
+            this.handleError(error);
           }
         );
     }, 1500);
   }
 
-  handleError(): void {
-    this.loader = false;
+  handleError(error: HttpErrorResponse): void {
+    this.loader = !this.loader;
+    this.loggerService.showErros(error);
     Swal.fire({
-      type: "error",
-      title: "Oops...",
-      text: "Algo deu errado, por favor tente novamente mais tarde! :(",
-      confirmButtonColor: "darkgreen"
+      type: 'error',
+      title: 'Oops...',
+      text: 'Algo deu errado, por favor tente novamente mais tarde! :(',
+      confirmButtonColor: 'darkgreen'
     });
   }
 }
